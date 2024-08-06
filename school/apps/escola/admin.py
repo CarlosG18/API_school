@@ -17,4 +17,3 @@ class CursoAdmin(admin.ModelAdmin):
 class MatriculaAdmin(admin.ModelAdmin):
     list_display = ('estudante','curso','periodo')
     search_fields = ('estudante','curso',)
-
