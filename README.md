@@ -10,3 +10,5 @@
 - ![curso1](https://img.shields.io/badge/Django_REST_Framework:_construindo_APIs_RESTful_do_Zero:_Django_Rest_Framework-9674EA?style=for-the-badge&logo=django&logoColor=white&labelColor=9674EA)
 
 ## 🎯 Objetivo
+
+O objetivo deste projeto é desenvolver uma API escolar utilizando o Django REST Framework, com o intuito de aplicar na prática os conceitos e técnicas aprendidos durante o curso "Django REST Framework: Construindo APIs RESTful do Zero" da Alura. A API é projetada para gerenciar informações escolares, permitindo a criação, leitura, atualização e exclusão de dados relacionados a alunos, turmas e disciplinas, promovendo uma experiência prática na construção de APIs robustas e escaláveis.
