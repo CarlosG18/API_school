@@ -1,8 +1,10 @@
 from .models import Estudante, Curso, Matricula
 from .serializers import EstudanteSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculasCursoSerializer, ListaMatriculasEstudanteSerializer
 from rest_framework import viewsets, generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class EstudanteViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Estudante.objects.all()
     serializer_class = EstudanteSerializer
 
@@ -22,6 +24,7 @@ class ListaMatriculasCurso(generics.ListAPIView):
     serializer_class = ListaMatriculasCursoSerializer
 
 class ListaMatriculasEstudante(generics.ListAPIView):
+
     def get_queryset(self):
         queryset = Matricula.objects.filter(estudante_id=self.kwargs['pk'])
         return queryset
