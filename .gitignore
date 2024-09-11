@@ -1,0 +1,28 @@
+# Ignorar o ambiente virtual
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Ignorar pastas e arquivos de migrações do Django
+**/migrations/
+**/migrations/*.py
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# Ignorar outros arquivos e pastas comuns
+*.pyc
+__pycache__/
+*.log
+*.sqlite3
+*.pyo
+*.pyd
+
+# Ignorar arquivos de configuração do IDE
+.idea/
+.vscode/
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
