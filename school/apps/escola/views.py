@@ -4,10 +4,12 @@ from rest_framework import viewsets, generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .pagination import SmallPagination, LargerPagination
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.throttling import UserRateThrottle
+from .throttles import MatriculaAnonRateThrottle
 
 class EstudanteViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Estudante.objects.all()
+    queryset = Estudante.objects.all().order_by('id')
     serializer_class = EstudanteSerializer
     pagination_class = LargerPagination
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
@@ -16,17 +18,18 @@ class EstudanteViewSet(viewsets.ModelViewSet):
 
 
 class CursoViewSet(viewsets.ModelViewSet):
-    queryset = Curso.objects.all()
+    queryset = Curso.objects.all().order_by('id')
     serializer_class = CursoSerializer
     pagination_class = SmallPagination
 
 class MatriculaViewSet(viewsets.ModelViewSet):
-    queryset = Matricula.objects.all()
+    queryset = Matricula.objects.all().order_by('id')
     serializer_class = MatriculaSerializer
+    throttle_classes = [UserRateThrottle,MatriculaAnonRateThrottle]
 
 class ListaMatriculasCurso(generics.ListAPIView):
     def get_queryset(self):
-        queryset = Matricula.objects.filter(curso_id=self.kwargs['pk'])
+        queryset = Matricula.objects.filter(curso_id=self.kwargs['pk']).order_by('id')
         return queryset
     
     serializer_class = ListaMatriculasCursoSerializer
@@ -34,7 +37,7 @@ class ListaMatriculasCurso(generics.ListAPIView):
 class ListaMatriculasEstudante(generics.ListAPIView):
 
     def get_queryset(self):
-        queryset = Matricula.objects.filter(estudante_id=self.kwargs['pk'])
+        queryset = Matricula.objects.filter(estudante_id=self.kwargs['pk']).order_by('id')
         return queryset
     
     serializer_class = ListaMatriculasEstudanteSerializer
